@@ -54,8 +54,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90%;
-    width: 50%;
+    height: 100%;
+    width: 60%;
     /* background-color:blue; */
 }
 
@@ -63,14 +63,10 @@ body {
     display: flex;
     flex-direction: column;
     /* background-color: yellow; */
-    height: 100%;
-    width: 80%;
+    height: 96%;
+    width: 96%;
+    padding: 2%;
 }
-
-/* form {
-    margin-bottom: 5%;
-    background-color: yellow;
-} */
 
 label {
     font-size: 1.5em;
@@ -78,7 +74,7 @@ label {
 
 input {
     background-color: #D3D3D3;
-    height: 10%;
+    height: 4%;
 }
 
 .text-input {
@@ -92,7 +88,7 @@ input {
 #rt-matches-attempts {
     height: 100%;
     width: 50%;
-    background-color:rgb(25, 234, 22);
+    /* background-color:rgb(25, 234, 22); */
 }
 
 #matches {
@@ -117,7 +113,7 @@ ul {
 
 #attempts {
     height: 50%;
-    background-color:cornflowerblue;
+    /* background-color:cornflowerblue; */
 }
 
 table {
@@ -127,6 +123,6 @@ table {
     /* background-color: greenyellow */
 }
 
-table, th, td {
+th, td {
     border: 1px solid black;
 }

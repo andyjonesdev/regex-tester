@@ -1,5 +1,19 @@
+<!--
+    TODO: remove echoes
+ -->
+
 <?php
-    # echo 'Hello World'
+    try{
+        $db = new SQLite3("regextester.sqlite");
+        echo "success";
+    } catch(Exception $exception){
+        echo "failure";
+    }
+
+
+    // $db -> exec("CREATE TABLE attempts(id INTEGER PRIMARY KEY, regex VARCHAR(50), matchcount INT)");
+    // $db -> exec("INSERT INTO attempts(regex, matchcount) VALUES('/Day/i', 4)");
+    // $res = $db -> query('SELECT * FROM attempts');
 ?>
 
 <!DOCTYPE html>
