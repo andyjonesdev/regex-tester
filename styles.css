@@ -1,3 +1,12 @@
+:root {
+    --main-color: #500078;
+    --accent-color: #BB68E5;
+}
+
+html {
+    font-family: 'Lato', sans-serif;
+}
+
 /* #rt-title {
     color: red;
 } */
