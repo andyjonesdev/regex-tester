@@ -1,3 +1,5 @@
+/* TODO: remove all background-colors used for testing */
+
 :root {
     --main-color: #500078;
     --accent-color: #BB68E5;
@@ -42,17 +44,32 @@ body {
     display: flex;
     flex-direction:row;
     height: 85%;
-    background-color:aquamarine;
+    /* background-color:aquamarine; */
 }
 
 #rt-inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     width: 50%;
-    background-color:blue;
+    /* background-color:blue; */
+}
+
+#inputs-form {
+    display: flex;
+    flex-direction: column;
+    /* background-color: yellow; */
+    height: 80%;
+    width: 80%;
+}
+
+label {
+    font-size: 1.5em;
 }
 
 #rt-attempts {
     height: 100%;
     width: 50%;
-    background-color:rgb(25, 234, 22);
+    /* background-color:rgb(25, 234, 22); */
 }

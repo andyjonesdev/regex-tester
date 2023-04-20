@@ -19,7 +19,7 @@
         <div id="rt-title">Regular Expression Tester</div>
         <div id="rt-content">
             <div id="rt-inputs">
-                <form>
+                <form id="inputs-form">
                     <label for="regex">Regular Expression</label><br>
                     <input type="text" name="regex"><br>
 
