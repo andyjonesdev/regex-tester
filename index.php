@@ -39,12 +39,53 @@
                 </form>
             </div>
             <div id="rt-matches-attempts">
-                <div id="matches"></div>
+                <div id="matches">
+                    <ul id="matches-ul">Matches
+                        <li>Hello, this is a long string</li>
+                        <li>Hello, this is a long string</li>
+                        <li>Hello, this is a long string</li>
+                        <li>Hello, this is a long string</li>
+                        <li>Hello, this is a long string</li>
+                        <li>Hello, this is a long string</li>
+                        <li>Hello, this is a long string</li>
+                        <li>Hello, this is a long string</li>
+                        <li>Hello, this is a long string</li>
+                        <li>Hello, this is a long string</li>
+                    </ul>
+                </div>
                 <div id="attempts">
                     <table>
                         <tr>
                             <th>Recent RegEx Attempts</th>
                             <th>Match Count</th>
+                        </tr>
+                        <tr>
+                            <td>/Day/i</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>/Day/i</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>/Day/i</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>/Day/i</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>/Day/i</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>/Day/i</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>/Day/i</td>
+                            <td>4</td>
                         </tr>
                     </table>
                 </div>

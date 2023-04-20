@@ -1,4 +1,6 @@
-/* TODO: remove all background-colors used for testing */
+/* TODO: remove all background-colors used for testing
+    TODO: refactor redundant styles
+*/
 
 :root {
     --main-color: #500078;
@@ -95,10 +97,36 @@ input {
 
 #matches {
     height:50%;
-    background-color:darkolivegreen;
+    /* background-color:darkolivegreen; */
+}
+
+ul {
+    font-size:1.5em;
+    gap: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: red; */
+    margin: 0;
+    padding: 0;
+    padding-top: 2%;
+    padding-left: 5%;
+    height: 98%;
+    width: 95%;
 }
 
 #attempts {
     height: 50%;
     background-color:cornflowerblue;
+}
+
+table {
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+    /* background-color: greenyellow */
+}
+
+table, th, td {
+    border: 1px solid black;
 }
