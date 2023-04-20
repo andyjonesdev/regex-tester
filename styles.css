@@ -30,14 +30,29 @@ body {
 }
 
 #rt-title {
+    font-size:4em;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 15%;
-    background-color: red;
+    /* background-color: red; */
 }
 
 #rt-content {
+    display: flex;
+    flex-direction:row;
     height: 85%;
     background-color:aquamarine;
+}
+
+#rt-inputs {
+    height: 100%;
+    width: 50%;
+    background-color:blue;
+}
+
+#rt-attempts {
+    height: 100%;
+    width: 50%;
+    background-color:rgb(25, 234, 22);
 }
