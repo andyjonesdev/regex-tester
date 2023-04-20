@@ -6,27 +6,38 @@
 
 html {
     font-family: 'Lato', sans-serif;
-    font-size: 100%;
 }
 
 body {
     background-color: var(--back-color);
     height: 100vh;
     width: 100vw;
+    font-size: 100%;
     margin: 0;
     display: flex;
     justify-content:center;
+    align-items: center;
 }
 
 #rt-container {
     /* background-color: red; */
     width: 70%;
-    height: 100%;
+    height: 90%;
     align-items: center;
+    border-radius: 3%;
     background-image: repeating-linear-gradient(135deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 2px,transparent 2px, transparent 4px),
     linear-gradient(135deg, var(--main-color), var(--accent-color));
 }
 
-/* #rt-title {
-    color: red;
-} */
+#rt-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 15%;
+    background-color: red;
+}
+
+#rt-content {
+    height: 85%;
+    background-color:aquamarine;
+}
