@@ -38,13 +38,16 @@
                     <input type="button" value="Test Lines" id="submit">
                 </form>
             </div>
-            <div id="rt-attempts">
-                <table>
-                    <tr>
-                        <th>Recent Regular Expressions</th>
-                        <th>Matches</th>
-                    </tr>
-                </table>
+            <div id="rt-matches-attempts">
+                <div id="matches"></div>
+                <div id="attempts">
+                    <table>
+                        <tr>
+                            <th>Recent RegEx Attempts</th>
+                            <th>Match Count</th>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
