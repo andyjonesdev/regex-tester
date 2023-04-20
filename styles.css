@@ -22,13 +22,14 @@ body {
 }
 
 #rt-container {
-    /* background-color: red; */
+    /* background-color: #FFEBE4; */
     width: 70%;
     height: 90%;
     align-items: center;
     border-radius: 3%;
     background-image: repeating-linear-gradient(135deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 2px,transparent 2px, transparent 4px),
     linear-gradient(135deg, var(--main-color), var(--accent-color));
+    box-shadow: 0px 3px 15px 5px;
 }
 
 #rt-title {
@@ -60,12 +61,30 @@ body {
     display: flex;
     flex-direction: column;
     /* background-color: yellow; */
-    height: 80%;
+    height: 100%;
     width: 80%;
+}
+
+form {
+    margin-bottom: 5%;
+    /* background-color: yellow; */
 }
 
 label {
     font-size: 1.5em;
+}
+
+input {
+    background-color: #D3D3D3;
+    height: 10%;
+}
+
+.text-input {
+    font-size:1.3em;
+}
+
+#submit {
+    font-size: 1.3em;
 }
 
 #rt-attempts {

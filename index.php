@@ -21,24 +21,31 @@
             <div id="rt-inputs">
                 <form id="inputs-form">
                     <label for="regex">Regular Expression</label><br>
-                    <input type="text" name="regex"><br>
+                    <input type="text" class="text-input" name="regex"><br>
 
                     <label for="test-lines">Expressions to Test</label><br>
-                    <input type="text" name="text-lines" id="line-1"><br>
-                    <input type="text" name="text-lines" id="line-2"><br>
-                    <input type="text" name="text-lines" id="line-3"><br>
-                    <input type="text" name="text-lines" id="line-4"><br>
-                    <input type="text" name="text-lines" id="line-5"><br>
-                    <input type="text" name="text-lines" id="line-6"><br>
-                    <input type="text" name="text-lines" id="line-7"><br>
-                    <input type="text" name="text-lines" id="line-8"><br>
-                    <input type="text" name="text-lines" id="line-9"><br>
-                    <input type="text" name="text-lines" id="line-10"><br>
+                    <input type="text" class="text-input" name="text-lines" id="line-1"><br>
+                    <input type="text" class="text-input" name="text-lines" id="line-2"><br>
+                    <input type="text" class="text-input" name="text-lines" id="line-3"><br>
+                    <input type="text" class="text-input" name="text-lines" id="line-4"><br>
+                    <input type="text" class="text-input" name="text-lines" id="line-5"><br>
+                    <input type="text" class="text-input" name="text-lines" id="line-6"><br>
+                    <input type="text" class="text-input" name="text-lines" id="line-7"><br>
+                    <input type="text" class="text-input" name="text-lines" id="line-8"><br>
+                    <input type="text" class="text-input" name="text-lines" id="line-9"><br>
+                    <input type="text" class="text-input" name="text-lines" id="line-10"><br>
 
-                    <input type="button" value="Test Lines">
+                    <input type="button" value="Test Lines" id="submit">
                 </form>
             </div>
-            <div id="rt-attempts"></div>
+            <div id="rt-attempts">
+                <table>
+                    <tr>
+                        <th>Recent Regular Expressions</th>
+                        <th>Matches</th>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </body>
