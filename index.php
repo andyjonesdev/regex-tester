@@ -33,6 +33,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="script.js"></script>
     <title>Regular Expression Tester</title>
 </head>
 <body>
@@ -56,7 +57,7 @@
                     <input type="text" class="text-input" name="text-lines" id="line-9"><br>
                     <input type="text" class="text-input" name="text-lines" id="line-10"><br>
 
-                    <input type="button" value="Test Lines" id="submit">
+                    <input type="button" value="Test Lines" id="submit" onclick="sayHello()">
                 </form>
             </div>
             <div id="rt-matches-attempts">

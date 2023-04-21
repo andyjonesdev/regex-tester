@@ -14,3 +14,7 @@ function submitInputData(id) {
 
     xhr.send("data=" + data);
 }
+
+function sayHello() {
+    console.log("hello world")
+}
