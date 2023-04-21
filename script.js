@@ -4,8 +4,20 @@ function clearInputFields() {
     }
 }
 
-function createDataString() {
-    // to write
+function createDataString(strArr) {
+    let dataString = ''
+    let dataNum = 1
+
+    strArr.forEach(str => {
+        if (dataNum === 1) {
+            dataString += `data${dataNum}=` + str
+        } else {
+            dataString += `&data${dataNum}=` + str
+        }
+        dataNum += 1
+    })
+
+    return dataString
 }
 
 
@@ -23,6 +35,7 @@ function submitInputData() {
     }
 
     console.log("arr is" + lineArr)
+    console.log("data string is " + createDataString(lineArr))
 
 
 
