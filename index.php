@@ -57,7 +57,7 @@
                     <input type="text" class="text-input" name="text-lines" id="line-9"><br>
                     <input type="text" class="text-input" name="text-lines" id="line-10"><br>
 
-                    <input type="button" value="Test Lines" id="submit" onclick="sayHello()">
+                    <input type="button" value="Test Lines" id="submit" onclick="submitInputData()">
                 </form>
             </div>
             <div id="rt-matches-attempts">

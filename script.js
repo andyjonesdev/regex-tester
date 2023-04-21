@@ -1,18 +1,45 @@
-function submitInputData(id) {
-    const data = document.getElementById(id).value;
+function clearInputFields() {
+    for (let i=1; i <= 10; i++) {
+        document.getElementById(`line-${i}`).value = ''
+    }
+}
 
-    const xhr = new XMLHttpRequest();
+function createDataString() {
+    // to write
+}
 
-    xhr.open("POST", "index.php");
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log(xhr.responseText);
-        }
-    };
+function submitInputData() {
+    // const data1 = document.getElementById("line-1").value;
+    let lineArr = []
 
-    xhr.send("data=" + data);
+    for (let i=1; i <= 10; i++) {
+        let lineVal = document.getElementById(`line-${i}`).value
+        console.log(`line ${i}'s value is ${lineVal}`)
+
+        if (lineVal === '') continue
+
+        lineArr.push(lineVal)
+    }
+
+    console.log("arr is" + lineArr)
+
+
+
+    clearInputFields()
+
+    // const xhr = new XMLHttpRequest();
+
+    // xhr.open("POST", "index.php");
+    // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    // xhr.onreadystatechange = function() {
+    //     if (xhr.readyState === 4 && xhr.status === 200) {
+    //         console.log(xhr.responseText);
+    //     }
+    // };
+
+    // xhr.send("data=" + data);
 }
 
 function sayHello() {
