@@ -27,24 +27,46 @@ function clearInputFields() {
 
 // given a php url and obj of KV pairs, send a fetch post request with the KV pairs as data
 function postReqAsJSON(phpUrl, valuesObj) {
+    // let testPostData = new FormData();
+    // testPostData.append('testdata', 123);
 
     fetch(phpUrl, {
-        method: 'POST',
+        method: "POST",
+        mode: "same-origin",
+        credentials: "same-origin",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
         },
+        // body: testPostData
         body: JSON.stringify(valuesObj)
     })
     .then(res => res.json())
     .then(data => {
         // return data
-        console.log(data)
+        console.log("I received JSON")
+        // console.log("regex: " + data["regex"])
+        // console.log("line1: " + data["line1"])
+        // console.log("line2: " + data["line2"])
+        // console.log("line3: " + data["line3"])
+        // console.log("line4: " + data["line4"])
+        // console.log("line5: " + data["line5"])
+
+        for (entry in data) console.log(`${entry}, ${data[entry]}`)
     })
     .catch(error => {
         console.error('Error:', error);
     });
 
 };
+
+function isJsonString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
 
 // on click of "Test lines" button:
 // 1. capture values from RegEx input field & all test line input fields
@@ -58,6 +80,8 @@ document.addEventListener("DOMContentLoaded", () => {
     button.addEventListener("click", () => {
         addRegexToObj(dataObj);
         addTestLinesToObj(dataObj);
+        console.log("JSON String " + JSON.stringify(dataObj))
+        console.log("Is valid JSON? " + isJsonString(JSON.stringify(dataObj)));
         postReqAsJSON('ajax.php', dataObj);
         clearInputFields();
     });
