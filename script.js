@@ -42,11 +42,11 @@ function xmlReqWithDataString(dataString) {
     xhr.open("POST", "index.php");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    // xhr.onreadystatechange = function() {
-    //     if (xhr.readyState === 4 && xhr.status === 200) {
-    //         console.log(xhr.responseText);
-    //     }
-    // };
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText);
+        }
+    };
 
     xhr.send(dataString);
 }
@@ -76,7 +76,30 @@ function submitInputData() {
     pushTestLines(inputArr)
 
     let dataString = createDataString(inputArr)
+    console.log({dataString})
 
     xmlReqWithDataString(dataString)
     clearInputFields()
 }
+
+// TODO: Connect this with above funcs to grab all text inputs and send as JSON
+document.addEventListener("DOMContentLoaded", () => {
+    let button = document.getElementById("submit");
+    button.addEventListener("click", function() {
+        fetch('ajax.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                test: "the test worked with fetch",
+                test2: "it worked yet again"
+            })
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+});

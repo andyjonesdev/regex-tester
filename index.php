@@ -2,25 +2,15 @@
     TODO: remove echoes, print_r, var_dump
  -->
 
-<?php
+ <?php
     try{
         $db = new SQLite3("regextester.sqlite");
-        // var_dump($db);
     } catch(Exception $exception){
         echo "failure";
     }
 
-
     $db->exec('CREATE TABLE IF NOT EXISTS attempts(id INTEGER PRIMARY KEY, regex VARCHAR(50), matchcount INT)');
-    // echo $db->lastErrorMsg();
-    // $db->exec("INSERT INTO attempts(regex, matchcount) VALUES('/Day/i', 4)");
     $res = $db->query('SELECT * FROM attempts');
-
-    // print_r($res)
-
-    // while ($row = $res->fetchArray()) {
-    //     echo "{$row['id']} {$row['regex']} {$row['matchcount']} \n";
-    // }
 ?>
 
 <!DOCTYPE html>
@@ -57,13 +47,14 @@
                     <input type="text" class="text-input" name="text-lines" id="line-9"><br>
                     <input type="text" class="text-input" name="text-lines" id="line-10"><br>
 
-                    <input type="button" value="Test Lines" id="submit" onclick="submitInputData()">
+                    <!-- <input type="button" value="Test Lines" id="submit" onclick="submitInputData()"> -->
+                    <input type="button" value="Test Lines" id="submit">
                 </form>
             </div>
             <div id="rt-matches-attempts">
                 <div id="matches">
                     <ul id="matches-ul">Matches
-                        <li>Hello, this is a long string</li>
+                        <li id="li1">Hello, this is a long string</li>
                         <li>Hello, this is a long string</li>
                         <li>Hello, this is a long string</li>
                         <li>Hello, this is a long string</li>
