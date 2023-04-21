@@ -33,7 +33,7 @@
             <div id="rt-inputs">
                 <form id="inputs-form">
                     <label for="regex">Regular Expression</label><br>
-                    <input type="text" class="text-input" name="regex" id="regex-str"><br>
+                    <input type="text" class="text-input" name="regex" id="regex"><br>
 
                     <label for="test-lines">Expressions to Test</label><br>
                     <input type="text" class="text-input" name="text-lines" id="line-1"><br>
