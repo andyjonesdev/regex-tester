@@ -7,7 +7,9 @@
         $test = $json_data->test;
         $test2 = $json_data->test2;
 
-        // Store stuff in DB and run preg_match
+        // Validate & Sanitize
+        // Run preg_match
+        // Store resulting infos in SQLite
 
         $data = array('result' => 'success', 'data'=>$test, 'data2'=>$test2);
 
