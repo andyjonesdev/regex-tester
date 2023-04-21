@@ -1,19 +1,26 @@
 <!--
-    TODO: remove echoes
+    TODO: remove echoes, print_r, var_dump
  -->
 
 <?php
     try{
         $db = new SQLite3("regextester.sqlite");
-        echo "success";
+        // var_dump($db);
     } catch(Exception $exception){
         echo "failure";
     }
 
 
-    // $db -> exec("CREATE TABLE attempts(id INTEGER PRIMARY KEY, regex VARCHAR(50), matchcount INT)");
-    // $db -> exec("INSERT INTO attempts(regex, matchcount) VALUES('/Day/i', 4)");
-    // $res = $db -> query('SELECT * FROM attempts');
+    $db->exec('CREATE TABLE attempts(id INTEGER PRIMARY KEY, regex VARCHAR(50), matchcount INT)');
+    // echo $db->lastErrorMsg();
+    $db->exec("INSERT INTO attempts(regex, matchcount) VALUES('/Day/i', 4)");
+    $res = $db->query('SELECT * FROM attempts');
+
+    print_r($res)
+
+    // while ($row = $res->fetchArray()) {
+    //     echo "{$row['id']} {$row['regex']} {$row['matchcount']} \n";
+    // }
 ?>
 
 <!DOCTYPE html>
