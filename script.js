@@ -1,10 +1,10 @@
-// helper fn: capture regex string value
+// helper: capture regex string value
 function pushRegexStr(arr) {
     arr.push(document.getElementById('regex-str').value)
 }
 
 
-// helper fn: capture all values from test line input fields
+// helper: capture all values from test line input fields
 function pushTestLines(arr) {
     for (let i=1; i <= 10; i++) {
         let lineVal = document.getElementById(`line-${i}`).value
@@ -17,7 +17,7 @@ function pushTestLines(arr) {
 }
 
 
-// helper fn: create a string from supplied regex and test line input fields
+// helper: create a string from supplied regex and test line input fields
 // to be sent via xml
 function createDataString(strArr) {
     let dataString = ''
@@ -35,7 +35,7 @@ function createDataString(strArr) {
 }
 
 
-//helper fn: send xml request with a dataString
+//helper: send xml request with a dataString
 function xmlReqWithDataString(dataString) {
     let xhr = new XMLHttpRequest();
 
@@ -52,7 +52,7 @@ function xmlReqWithDataString(dataString) {
 }
 
 
-// helper fn: clear all input fields after testing a set of lines
+// helper: clear all input fields after testing a set of lines
 function clearInputFields() {
     document.getElementById('regex-str').value = ''
 
@@ -60,8 +60,6 @@ function clearInputFields() {
         document.getElementById(`line-${i}`).value = ''
     }
 }
-
-
 
 
 // on click of "Test lines" button:
@@ -97,7 +95,12 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data)
+
+            let testLi = document.getElementById("li1")
+            testLi.innerText = data.data
+        })
         .catch(error => {
             console.error('Error:', error);
         });
