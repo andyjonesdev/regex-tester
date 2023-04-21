@@ -1,50 +1,46 @@
-function clearInputFields() {
-    for (let i=1; i <= 10; i++) {
-        document.getElementById(`line-${i}`).value = ''
-    }
-}
-
-function createDataString(strArr) {
-    let dataString = ''
-    let dataNum = 1
-
-    strArr.forEach(str => {
-        if (dataNum === 1) {
-            dataString += `data${dataNum}=` + str
-        } else {
-            dataString += `&data${dataNum}=` + str
-        }
-        dataNum += 1
-    })
-
-    return dataString
+// helper fn: capture regex string value
+function pushRegexStr(arr) {
+    arr.push(document.getElementById('regex-str').value)
 }
 
 
-function submitInputData() {
-    // const data1 = document.getElementById("line-1").value;
-    let lineArr = []
-
+// helper fn: capture all values from test line input fields
+function pushTestLines(arr) {
     for (let i=1; i <= 10; i++) {
         let lineVal = document.getElementById(`line-${i}`).value
         console.log(`line ${i}'s value is ${lineVal}`)
 
         if (lineVal === '') continue
 
-        lineArr.push(lineVal)
+        arr.push(lineVal)
     }
-
-    console.log("arr is" + lineArr)
-    console.log("data string is " + createDataString(lineArr))
+}
 
 
+// helper fn: create a string from supplied regex and test line input fields
+// to be sent via xml
+function createDataString(strArr) {
+    let dataString = ''
+    let idx = 0
 
-    clearInputFields()
+    strArr.forEach(str => {
+        if (idx === 0) dataString += "regex=" + str
+        else {
+            dataString += `&data${idx}=` + str
+        }
+        idx += 1
+    })
 
-    // const xhr = new XMLHttpRequest();
+    return dataString
+}
 
-    // xhr.open("POST", "index.php");
-    // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+//helper fn: send xml request with a dataString
+function xmlReqWithDataString(dataString) {
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", "index.php");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     // xhr.onreadystatechange = function() {
     //     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -52,9 +48,35 @@ function submitInputData() {
     //     }
     // };
 
-    // xhr.send("data=" + data);
+    xhr.send(dataString);
 }
 
-function sayHello() {
-    console.log("hello world")
+
+// helper fn: clear all input fields after testing a set of lines
+function clearInputFields() {
+    document.getElementById('regex-str').value = ''
+
+    for (let i=1; i <= 10; i++) {
+        document.getElementById(`line-${i}`).value = ''
+    }
+}
+
+
+
+
+// on click of "Test lines" button:
+// 1. capture values from RegEx field & all test line input fields
+// 2. concatenate values into a data string
+// 3. send xml request with data string
+// 4. clear input field values
+function submitInputData() {
+    let inputArr = []
+
+    pushRegexStr(inputArr)
+    pushTestLines(inputArr)
+
+    let dataString = createDataString(inputArr)
+
+    xmlReqWithDataString(dataString)
+    clearInputFields()
 }
