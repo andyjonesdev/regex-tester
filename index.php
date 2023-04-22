@@ -2,30 +2,6 @@
     TODO: remove echoes, print_r, var_dump
     TODO: make html divs more semantic where possible -->
 
-
-<?php
-    // $is_fetch_request = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
-
-    // $res = $db->query('SELECT regex, matchCount FROM attempts ORDER BY createdAt LIMIT 7');
-
-    // $json_data = json_encode($res_arr[0]);
-    // echo $json_data
-
-    // $regexes = [];
-    // $match_counts = [];
-
-    // // modify this to
-    // if ($db) {
-    //     while ($row = $res->fetchArray()) {
-    //         array_push($regexes, $row["regex"]);
-    //         array_push($match_counts, $row["matchCount"]);
-    //     }
-
-    //     echo "REGEXES -> " . $regexes . "</br>";
-    //     echo "MATCH COUNTS -> " . $match_counts . "</br>";
-    // };
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,6 +39,7 @@
                     <input type="button" value="Test Lines" id="submit">
                 </form>
             </div>
+            <!-- TODO: remove placeholder data, dynamically add li's to ul via id -->
             <div id="rt-matches-attempts">
                 <div id="matches">
                     <ul id="matches-ul">Matches
@@ -78,6 +55,7 @@
                         <li id="li10">Hello, this is a long string</li>
                     </ul>
                 </div>
+                <!-- TODO: remove placeholder data, give table id for appending tr's dynamically-->
                 <div id="attempts">
                     <table>
                         <tr>

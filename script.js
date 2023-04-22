@@ -1,11 +1,11 @@
-// helper: capture regex string and add it to an obj
+// capture regex string and add it to an obj
 function addRegexToObj(obj) {
     let regex = document.getElementById('regex').value
     obj["regex"] = regex
 }
 
 
-// helper: capture all values from test line input fields and add them to an obj
+// capture all values from test line input fields and add them to an obj
 function addTestLinesToObj(obj) {
     for (let i=1; i <= 10; i++) {
         let lineVal = document.getElementById(`line-${i}`).value
@@ -15,7 +15,7 @@ function addTestLinesToObj(obj) {
 }
 
 
-// helper: clear all input fields after testing a set of lines
+// clear all input fields after testing a set of lines
 function clearInputFields() {
     document.getElementById('regex').value = ''
 
@@ -27,7 +27,6 @@ function clearInputFields() {
 
 // given a php url and obj of KV pairs, send a fetch post request with the KV pairs as data
 function postReqAsJSON(phpUrl, valuesObj) {
-
     fetch(phpUrl, {
         method: "POST",
         mode: "same-origin",
@@ -39,15 +38,16 @@ function postReqAsJSON(phpUrl, valuesObj) {
     })
     .then(res => res.json())
     .then(data => {
-        // TODO: REFACTOR TO OWN CALLBACK FUNCTION
-        // use the returned "matches" key to get the lines that matches
-        // replace id of li${n}'s inner text with the match
+        // TODO: extract logic to its own cb fn
         for (entry in data) console.log(`${entry}, ${data[entry]}`)
 
+        // use the returned "matches" key to get the lines that match
         let matches = data["matches"]
-        console.log({matches})
+        console.log("matches--> " + matches)
 
         let idx = 1
+        // replace inner text of li${n} with the match
+        // TODO: change logic to creating an li for each match and appending it to the ul
         matches.forEach(match => {
             let liToReplace = document.getElementById(`li${idx}`)
             liToReplace.innerText = match
@@ -57,17 +57,8 @@ function postReqAsJSON(phpUrl, valuesObj) {
     .catch(error => {
         console.error('Error:', error);
     });
-
 };
 
-function isJsonString(str) {
-    try {
-        JSON.parse(str);
-    } catch (e) {
-        return false;
-    }
-    return true;
-}
 
 // on click of "Test lines" button:
 // 1. capture values from RegEx input field & all test line input fields
@@ -81,13 +72,12 @@ document.addEventListener("DOMContentLoaded", () => {
     button.addEventListener("click", () => {
         addRegexToObj(dataObj);
         addTestLinesToObj(dataObj);
-        console.log("outgoing JSON String: " + JSON.stringify(dataObj))
         postReqAsJSON('regex_matches.php', dataObj);
         clearInputFields();
     });
 
 
-    // ask PHP for any regEx attempts loaded when server runs index.php
+    // when DOM content is loaded, ask PHP for RegEx attempt history
     fetch('regex_history.php', {
         method: "GET",
         mode: "same-origin",
@@ -100,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(data => {
         data.forEach(entry => {
             console.log(`${entry.regex}: ${entry.matchCount}`);
+            // TODO: dynamically update rows of "recent attempts" table with this response data
         });
     })
     .catch(error => {
