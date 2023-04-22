@@ -55,15 +55,15 @@
                 <div id="matches">
                     <ul id="matches-ul">Matches
                         <li id="li1">Hello, this is a long string</li>
-                        <li>Hello, this is a long string</li>
-                        <li>Hello, this is a long string</li>
-                        <li>Hello, this is a long string</li>
-                        <li>Hello, this is a long string</li>
-                        <li>Hello, this is a long string</li>
-                        <li>Hello, this is a long string</li>
-                        <li>Hello, this is a long string</li>
-                        <li>Hello, this is a long string</li>
-                        <li>Hello, this is a long string</li>
+                        <li id="li2">Hello, this is a long string</li>
+                        <li id="li3">Hello, this is a long string</li>
+                        <li id="li4">Hello, this is a long string</li>
+                        <li id="li5">Hello, this is a long string</li>
+                        <li id="li6">Hello, this is a long string</li>
+                        <li id="li7">Hello, this is a long string</li>
+                        <li id="li8">Hello, this is a long string</li>
+                        <li id="li9">Hello, this is a long string</li>
+                        <li id="li10">Hello, this is a long string</li>
                     </ul>
                 </div>
                 <div id="attempts">

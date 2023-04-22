@@ -40,7 +40,19 @@ function postReqAsJSON(phpUrl, valuesObj) {
     .then(res => res.json())
     .then(data => {
         // return data
+        // use the returned "matches" key to get the lines that matches
+        // replace id of li${n}'s inner text with the match
         for (entry in data) console.log(`${entry}, ${data[entry]}`)
+
+        let matches = data["matches"]
+        console.log({matches})
+
+        let idx = 1
+        matches.forEach(match => {
+            let liToReplace = document.getElementById(`li${idx}`)
+            liToReplace.innerText = match
+            idx++
+        })
     })
     .catch(error => {
         console.error('Error:', error);
