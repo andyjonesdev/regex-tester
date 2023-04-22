@@ -1,5 +1,6 @@
 <!--
     TODO: remove echoes, print_r, var_dump
+    TODO: make html divs more semantic where possible
  -->
 
  <?php
@@ -47,7 +48,6 @@
                     <input type="text" class="text-input" name="text-lines" id="line-9"><br>
                     <input type="text" class="text-input" name="text-lines" id="line-10"><br>
 
-                    <!-- <input type="button" value="Test Lines" id="submit" onclick="submitInputData()"> -->
                     <input type="button" value="Test Lines" id="submit">
                 </form>
             </div>
