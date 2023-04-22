@@ -43,40 +43,11 @@
                 <div id="matches">
                     <ul id="matches-ul">Matches</ul>
                 </div>
-                <!-- TODO: remove placeholder data, give table id for appending tr's dynamically-->
                 <div id="attempts">
-                    <table>
+                    <table id="history-table">
                         <tr>
                             <th>Recent RegEx Attempts</th>
                             <th>Match Count</th>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
                         </tr>
                     </table>
                 </div>

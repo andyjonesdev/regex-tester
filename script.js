@@ -95,9 +95,23 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then(res => res.json())
     .then(data => {
+        let historyTable = document.getElementById("history-table")
+
+        // TODO: extract into helper fn
+        // for each attempts entry, create a new table row, using entry.regex and entry.matchCount as the row's cells
+        // append the new row onto the recent attempts table
         data.forEach(entry => {
-            console.log(`${entry.regex}: ${entry.matchCount}`);
-            // TODO: dynamically update rows of "recent attempts" table with this response data
+            let newRow = document.createElement("tr")
+            let newDataRegex = document.createElement("td")
+            let newDataMatches = document.createElement("td")
+
+            newDataRegex.innerText = entry.regex
+            newDataMatches.innerText = entry.matchCount
+
+            newRow.appendChild(newDataRegex)
+            newRow.appendChild(newDataMatches)
+
+            historyTable.appendChild(newRow)
         });
     })
     .catch(error => {
