@@ -1,17 +1,29 @@
 <!--
     TODO: remove echoes, print_r, var_dump
-    TODO: make html divs more semantic where possible
- -->
+    TODO: make html divs more semantic where possible -->
 
- <?php
-    try{
-        $db = new SQLite3("regextester.sqlite");
-    } catch(Exception $exception){
-        echo "failure";
-    }
 
-    $db->exec('CREATE TABLE IF NOT EXISTS attempts(id INTEGER PRIMARY KEY, regex VARCHAR(50), matchcount INT)');
-    $res = $db->query('SELECT * FROM attempts');
+<?php
+    // $is_fetch_request = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
+
+    // $res = $db->query('SELECT regex, matchCount FROM attempts ORDER BY createdAt LIMIT 7');
+
+    // $json_data = json_encode($res_arr[0]);
+    // echo $json_data
+
+    // $regexes = [];
+    // $match_counts = [];
+
+    // // modify this to
+    // if ($db) {
+    //     while ($row = $res->fetchArray()) {
+    //         array_push($regexes, $row["regex"]);
+    //         array_push($match_counts, $row["matchCount"]);
+    //     }
+
+    //     echo "REGEXES -> " . $regexes . "</br>";
+    //     echo "MATCH COUNTS -> " . $match_counts . "</br>";
+    // };
 ?>
 
 <!DOCTYPE html>

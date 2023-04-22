@@ -39,7 +39,7 @@ function postReqAsJSON(phpUrl, valuesObj) {
     })
     .then(res => res.json())
     .then(data => {
-        // return data
+        // TODO: REFACTOR TO OWN CALLBACK FUNCTION
         // use the returned "matches" key to get the lines that matches
         // replace id of li${n}'s inner text with the match
         for (entry in data) console.log(`${entry}, ${data[entry]}`)
@@ -82,7 +82,27 @@ document.addEventListener("DOMContentLoaded", () => {
         addRegexToObj(dataObj);
         addTestLinesToObj(dataObj);
         console.log("outgoing JSON String: " + JSON.stringify(dataObj))
-        postReqAsJSON('ajax.php', dataObj);
+        postReqAsJSON('regex_matches.php', dataObj);
         clearInputFields();
+    });
+
+
+    // ask PHP for any regEx attempts loaded when server runs index.php
+    fetch('regex_history.php', {
+        method: "GET",
+        mode: "same-origin",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        data.forEach(entry => {
+            console.log(`${entry.regex}: ${entry.matchCount}`);
+        });
+    })
+    .catch(error => {
+    console.error('Request failed:', error);
     });
 });
