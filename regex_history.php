@@ -7,7 +7,7 @@ try{
 $db->exec(
     'CREATE TABLE IF NOT EXISTS attempts(id INTEGER PRIMARY KEY AUTOINCREMENT, regex VARCHAR(50), matchCount INT, createdAt DATETIME DEFAULT CURRENT_TIMESTAMP)'
 );
-$stmt = $db->prepare('SELECT regex, matchCount FROM attempts ORDER BY createdAt LIMIT 7');
+$stmt = $db->prepare('SELECT regex, matchCount FROM attempts ORDER BY createdAt DESC LIMIT 7');
 $res = $stmt->execute();
 
 $res_arr = array();

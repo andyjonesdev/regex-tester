@@ -16,8 +16,9 @@ function addTestLinesToObj(obj) {
 
 
 // clear all input fields after testing a set of lines
-function clearInputFields() {
+function clearInputFieldsAndMatches() {
     document.getElementById('regex').value = ''
+    document.getElementById('matches-ul').innerHTML='Matches'
 
     for (let i=1; i <= 10; i++) {
         document.getElementById(`line-${i}`).value = ''
@@ -45,14 +46,20 @@ function postReqAsJSON(phpUrl, valuesObj) {
         let matches = data["matches"]
         console.log("matches--> " + matches)
 
-        let idx = 1
-        // replace inner text of li${n} with the match
-        // TODO: change logic to creating an li for each match and appending it to the ul
-        matches.forEach(match => {
-            let liToReplace = document.getElementById(`li${idx}`)
-            liToReplace.innerText = match
-            idx++
-        })
+        // create an li for each match and append to matches ul
+        let matchesUl = document.getElementById("matches-ul")
+        if (matches.length) {
+            matches.forEach(match => {
+                let newLi = document.createElement("li")
+                newLi.innerText = match
+                matchesUl.appendChild(newLi)
+            })
+        } else {
+            let newLi = document.createElement("li")
+            newLi.innerText = "No Matches"
+            newLi.classList.add("error")
+            matchesUl.appendChild(newLi)
+        }
     })
     .catch(error => {
         console.error('Error:', error);
@@ -73,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
         addRegexToObj(dataObj);
         addTestLinesToObj(dataObj);
         postReqAsJSON('regex_matches.php', dataObj);
-        clearInputFields();
+        clearInputFieldsAndMatches();
     });
 
 

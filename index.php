@@ -39,21 +39,9 @@
                     <input type="button" value="Test Lines" id="submit">
                 </form>
             </div>
-            <!-- TODO: remove placeholder data, dynamically add li's to ul via id -->
             <div id="rt-matches-attempts">
                 <div id="matches">
-                    <ul id="matches-ul">Matches
-                        <li id="li1">Hello, this is a long string</li>
-                        <li id="li2">Hello, this is a long string</li>
-                        <li id="li3">Hello, this is a long string</li>
-                        <li id="li4">Hello, this is a long string</li>
-                        <li id="li5">Hello, this is a long string</li>
-                        <li id="li6">Hello, this is a long string</li>
-                        <li id="li7">Hello, this is a long string</li>
-                        <li id="li8">Hello, this is a long string</li>
-                        <li id="li9">Hello, this is a long string</li>
-                        <li id="li10">Hello, this is a long string</li>
-                    </ul>
+                    <ul id="matches-ul">Matches</ul>
                 </div>
                 <!-- TODO: remove placeholder data, give table id for appending tr's dynamically-->
                 <div id="attempts">
@@ -63,32 +51,32 @@
                             <th>Match Count</th>
                         </tr>
                         <tr>
-                            <td>/Day/i</td>
-                            <td>4</td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td>/Day/i</td>
-                            <td>4</td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td>/Day/i</td>
-                            <td>4</td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td>/Day/i</td>
-                            <td>4</td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td>/Day/i</td>
-                            <td>4</td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td>/Day/i</td>
-                            <td>4</td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td>/Day/i</td>
-                            <td>4</td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </table>
                 </div>
