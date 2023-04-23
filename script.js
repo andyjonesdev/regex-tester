@@ -14,11 +14,11 @@ function addTestLinesToObj(obj) {
     }
 }
 
+// use the returned "matches" key to get the lines that match
+// create an li for each match and append to matches ul
 function addMatchesToMatchesUl(dataObj) {
-    // use the returned "matches" key to get the lines that match
     let matches = dataObj["matches"]
 
-    // create an li for each match and append to matches ul
     let matchesUl = document.getElementById("matches-ul")
     if (matches.length) {
         matches.forEach(match => {
@@ -50,25 +50,27 @@ function addAttemptToRecentAttemptsTable(dataObj) {
         newRow.appendChild(matchCountData)
 
         // insert latest regex attempt and matchCount to top of recent attempts table
-        historyTable.tBodies[0].insertBefore(newRow, historyTable.tBodies[0].firstChild);
         // get rid of least recent regex attempt by removing tr and both associated td from DOM
+        historyTable.tBodies[0].insertBefore(newRow, historyTable.tBodies[0].firstChild);
         let lastRow = document.querySelector("tbody").lastElementChild
         lastRow.children[0].remove()
         lastRow.children[0].remove()
         lastRow.remove();
 }
-
-// given a php url and obj of KV pairs, send a fetch post request with the KV pairs as data
-function postReqAsJSON(phpUrl, valuesObj) {
-    fetch(phpUrl, {
+function sendPostReqAsJSON(phpUrl, dataObj) {
+    return fetch(phpUrl, {
         method: "POST",
         mode: "same-origin",
         credentials: "same-origin",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(valuesObj)
+        body: JSON.stringify(dataObj)
     })
+}
+// given a php url and obj of KV pairs, send a fetch post request with the KV pairs as data
+function fetchDataFromPHPAndUpdateDOM(phpUrl, valuesObj) {
+    sendPostReqAsJSON(phpUrl, valuesObj)
     .then(res => res.json())
     .then(data => {
         addMatchesToMatchesUl(data)
@@ -78,6 +80,21 @@ function postReqAsJSON(phpUrl, valuesObj) {
         console.error('Error:', error);
     });
 };
+
+
+function fetchAttemptHistoryAndPopulateTable() {
+    fetch('regex_history.php', {
+        method: "GET",
+        mode: "same-origin",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res => res.json())
+    .then(data => populateRecentAttemptsTable(data))
+    .catch(error => console.error('Request failed:', error));
+}
 
 
 // 1. if there are fewer than 7 records, populate those fields with placeholders
@@ -113,6 +130,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let button = document.getElementById("submit");
     let dataObj = {}
 
+    // when DOM content is loaded, request RegEx attempt history from PHP
+    fetchAttemptHistoryAndPopulateTable()
+
+
     // on click of "Test lines" button:
     // 1. capture values from RegEx input field & all test line input fields
     // 2. store values in an object
@@ -121,24 +142,9 @@ document.addEventListener("DOMContentLoaded", () => {
     button.addEventListener("click", () => {
         addRegexToObj(dataObj);
         addTestLinesToObj(dataObj);
-        postReqAsJSON('regex_matches.php', dataObj);
+        fetchDataFromPHPAndUpdateDOM('regex_matches.php', dataObj);
 
+        // reset the content of "Matches" ul after each test
         document.getElementById('matches-ul').innerHTML='Matches'
-    });
-
-
-    // when DOM content is loaded, request RegEx attempt history from PHP
-    fetch('regex_history.php', {
-        method: "GET",
-        mode: "same-origin",
-        credentials: "same-origin",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    .then(res => res.json())
-    .then(data => populateRecentAttemptsTable(data))
-    .catch(error => {
-    console.error('Request failed:', error);
     });
 });
