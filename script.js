@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
         while (data.length && data.length < 7) {
             data.push({
                 regex: "----------",
-                matchcount: "-----"
+                matchCount: "-----"
             })
         }
 
