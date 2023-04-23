@@ -15,12 +15,6 @@ function addTestLinesToObj(obj) {
 }
 
 
-// clear all input fields after testing a set of lines
-function clearMatches() {
-    document.getElementById('matches-ul').innerHTML='Matches'
-}
-
-
 // given a php url and obj of KV pairs, send a fetch post request with the KV pairs as data
 function postReqAsJSON(phpUrl, valuesObj) {
     fetch(phpUrl, {
@@ -35,11 +29,8 @@ function postReqAsJSON(phpUrl, valuesObj) {
     .then(res => res.json())
     .then(data => {
         // TODO: extract logic to its own cb fn
-        for (entry in data) console.log(`${entry}, ${data[entry]}`)
-
         // use the returned "matches" key to get the lines that match
         let matches = data["matches"]
-        console.log("matches--> " + matches)
 
         // create an li for each match and append to matches ul
         let matchesUl = document.getElementById("matches-ul")
@@ -61,8 +52,6 @@ function postReqAsJSON(phpUrl, valuesObj) {
         let regex = data["regexAttempt"];
         let matchCount = data["matchCount"];
         let historyTable = document.getElementById("history-table")
-        // let headings = document.getElementById("headings")
-        let headings = document.querySelector("tbody")
 
         let regexData = document.createElement("td");
         let matchCountData = document.createElement("td");
@@ -117,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then(res => res.json())
     .then(data => {
-        let historyTable = document.getElementById("history-table")
         let tableBody = document.querySelector("tbody")
 
         // TODO: extract into helper fn
