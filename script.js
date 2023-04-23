@@ -16,13 +16,8 @@ function addTestLinesToObj(obj) {
 
 
 // clear all input fields after testing a set of lines
-function clearInputFieldsAndMatches() {
-    document.getElementById('regex').value = ''
+function clearMatches() {
     document.getElementById('matches-ul').innerHTML='Matches'
-
-    for (let i=1; i <= 10; i++) {
-        document.getElementById(`line-${i}`).value = ''
-    }
 }
 
 
@@ -51,6 +46,7 @@ function postReqAsJSON(phpUrl, valuesObj) {
         if (matches.length) {
             matches.forEach(match => {
                 let newLi = document.createElement("li")
+                newLi.classList.add("success")
                 newLi.innerText = match
                 matchesUl.appendChild(newLi)
             })
@@ -92,20 +88,21 @@ function postReqAsJSON(phpUrl, valuesObj) {
 };
 
 
-// on click of "Test lines" button:
-// 1. capture values from RegEx input field & all test line input fields
-// 2. store values in an object
-// 3. send fetch POST request as JSON, supplying the object
-// 4. clear input field values
 document.addEventListener("DOMContentLoaded", () => {
     let button = document.getElementById("submit");
     let dataObj = {}
 
+    // on click of "Test lines" button:
+    // 1. capture values from RegEx input field & all test line input fields
+    // 2. store values in an object
+    // 3. send fetch POST request as JSON, supplying the object
+    // 4. clear any li from "matches" ul before next test
     button.addEventListener("click", () => {
         addRegexToObj(dataObj);
         addTestLinesToObj(dataObj);
         postReqAsJSON('regex_matches.php', dataObj);
-        clearInputFieldsAndMatches();
+
+        document.getElementById('matches-ul').innerHTML='Matches'
     });
 
 

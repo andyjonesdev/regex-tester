@@ -1,7 +1,3 @@
-/* TODO: remove all background-colors used for testing
-    TODO: refactor redundant styles
-*/
-
 /* General page styles */
 :root {
     --main-color: #500078;
@@ -15,7 +11,22 @@ html {
 }
 
 body {
-    background-color: var(--back-color);
+    background:
+	linear-gradient(
+		#bb34ff,
+		transparent
+        ),
+    linear-gradient(
+        -45deg,
+        #bd85d9,
+		transparent
+	),
+	linear-gradient(
+		45deg,
+		#230432,
+		transparent
+	);
+    background-blend-mode: multiply;
     height: 100vh;
     width: 100vw;
     font-size: 100%;
@@ -26,14 +37,14 @@ body {
 }
 
 #rt-container {
-    /* background-color: #FFEBE4; */
-    width: 70%;
+    width: 50%;
     height: 90%;
     align-items: center;
     border-radius: 3%;
     background-image: repeating-linear-gradient(135deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 2px,transparent 2px, transparent 4px),
-    linear-gradient(135deg, var(--main-color), var(--accent-color));
-    box-shadow: 0px 3px 15px 5px;
+    linear-gradient(130deg, var(--main-color), var(--accent-color));
+    box-shadow: 0px 3px 15px;
+    border: 2px solid black;
 }
 
 #rt-title {
@@ -42,14 +53,12 @@ body {
     align-items: center;
     justify-content: center;
     height: 10%;
-    /* background-color: red; */
 }
 
 #rt-content {
     display: flex;
     flex-direction:row;
     height: 90%;
-    /* background-color:aquamarine; */
 }
 
 
@@ -63,13 +72,11 @@ body {
     align-items: center;
     height: 100%;
     width: 60%;
-    /* background-color:blue; */
 }
 
 #inputs-form {
     display: flex;
     flex-direction: column;
-    /* background-color: yellow; */
     height: 92%;
     width: 96%;
     padding: 2%;
@@ -98,7 +105,6 @@ label {
 #rt-matches-attempts {
     height: 100%;
     width: 50%;
-    /* background-color:rgb(25, 234, 22); */
 }
 
 
@@ -112,8 +118,6 @@ label {
     height:50%;
     margin-right: 0.8%;
     margin-top: 1.6%;
-    /* border: 1px solid black; */
-    /* background-color:darkolivegreen; */
 }
 
 ul {
@@ -124,7 +128,6 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: rose; */
     margin: 0;
     padding: 0;
     padding-top: 2%;
@@ -136,17 +139,19 @@ li.error {
     color: red;
 }
 
+li.success {
+    color: green;
+}
+
 /* Recent attempts styles */
 #attempts {
     height: 50%;
-    /* background-color:cornflowerblue; */
 }
 
 table {
     padding: 2%;
     height: 93%;
     width: 99.5%;
-    /* background-color: greenyellow */
 }
 
 th, td {
