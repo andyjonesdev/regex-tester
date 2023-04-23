@@ -1,8 +1,8 @@
 /* TODO: remove all background-colors used for testing
     TODO: refactor redundant styles
-    TODO: insert comments to group styles for sections of the app
 */
 
+/* General page styles */
 :root {
     --main-color: #500078;
     --accent-color: #BB68E5;
@@ -51,6 +51,7 @@ body {
     /* background-color:aquamarine; */
 }
 
+/* Regex, TestLine section styles */
 #rt-inputs {
     display: flex;
     justify-content: center;
@@ -92,6 +93,7 @@ input {
     /* background-color:rgb(25, 234, 22); */
 }
 
+/* Successful matches styles */
 #matches {
     height:50%;
     /* background-color:darkolivegreen; */
@@ -112,6 +114,7 @@ ul {
     width: 95%;
 }
 
+/* Recent attempts styles */
 #attempts {
     height: 50%;
     /* background-color:cornflowerblue; */
