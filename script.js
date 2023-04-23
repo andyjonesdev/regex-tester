@@ -14,6 +14,49 @@ function addTestLinesToObj(obj) {
     }
 }
 
+function addMatchesToMatchesUl(dataObj) {
+    // use the returned "matches" key to get the lines that match
+    let matches = dataObj["matches"]
+
+    // create an li for each match and append to matches ul
+    let matchesUl = document.getElementById("matches-ul")
+    if (matches.length) {
+        matches.forEach(match => {
+            let newLi = document.createElement("li")
+            newLi.classList.add("success")
+            newLi.innerText = match
+            matchesUl.appendChild(newLi)
+        })
+    } else {
+        let newLi = document.createElement("li")
+        newLi.innerText = "No Matches"
+        newLi.classList.add("error")
+        matchesUl.appendChild(newLi)
+    }
+}
+
+function addAttemptToRecentAttemptsTable(dataObj) {
+    let regex = dataObj["regexAttempt"];
+        let matchCount = dataObj["matchCount"];
+        let historyTable = document.getElementById("history-table")
+
+        let regexData = document.createElement("td");
+        let matchCountData = document.createElement("td");
+        regexData.innerText = regex
+        matchCountData.innerText = matchCount
+
+        let newRow = document.createElement("tr")
+        newRow.appendChild(regexData)
+        newRow.appendChild(matchCountData)
+
+        // insert latest regex attempt and matchCount to top of recent attempts table
+        historyTable.tBodies[0].insertBefore(newRow, historyTable.tBodies[0].firstChild);
+        // get rid of least recent regex attempt by removing tr and both associated td from DOM
+        let lastRow = document.querySelector("tbody").lastElementChild
+        lastRow.children[0].remove()
+        lastRow.children[0].remove()
+        lastRow.remove();
+}
 
 // given a php url and obj of KV pairs, send a fetch post request with the KV pairs as data
 function postReqAsJSON(phpUrl, valuesObj) {
@@ -28,53 +71,42 @@ function postReqAsJSON(phpUrl, valuesObj) {
     })
     .then(res => res.json())
     .then(data => {
-        // TODO: extract logic to its own cb fn
-        // use the returned "matches" key to get the lines that match
-        let matches = data["matches"]
-
-        // create an li for each match and append to matches ul
-        let matchesUl = document.getElementById("matches-ul")
-        if (matches.length) {
-            matches.forEach(match => {
-                let newLi = document.createElement("li")
-                newLi.classList.add("success")
-                newLi.innerText = match
-                matchesUl.appendChild(newLi)
-            })
-        } else {
-            let newLi = document.createElement("li")
-            newLi.innerText = "No Matches"
-            newLi.classList.add("error")
-            matchesUl.appendChild(newLi)
-        }
-
-        // TODO: extract to helper fn
-        let regex = data["regexAttempt"];
-        let matchCount = data["matchCount"];
-        let historyTable = document.getElementById("history-table")
-
-        let regexData = document.createElement("td");
-        let matchCountData = document.createElement("td");
-        regexData.innerText = regex
-        matchCountData.innerText = matchCount
-
-        let newRow = document.createElement("tr")
-        newRow.appendChild(regexData)
-        newRow.appendChild(matchCountData)
-
-        // insert latest regex attempt and matchCount to top of recent attempts table
-        historyTable.tBodies[0].insertBefore(newRow, historyTable.tBodies[0].firstChild);
-        // get rid of the least recent regex attempt by removing tr and both associated td from DOM
-        let lastRow = document.querySelector("tbody").lastElementChild
-        lastRow.children[0].remove()
-        lastRow.children[0].remove()
-        lastRow.remove();
-
+        addMatchesToMatchesUl(data)
+        addAttemptToRecentAttemptsTable(data)
     })
     .catch(error => {
         console.error('Error:', error);
     });
 };
+
+
+// 1. if there are fewer than 7 records, populate those fields with placeholders
+// 2. create a tr with a td for RegEx and a td for matchCount
+// 3. append the new tr to the table
+function populateRecentAttemptsTable(dataObj) {
+    let tableBody = document.querySelector("tbody")
+
+    while (dataObj.length && dataObj.length < 7) {
+        dataObj.push({
+            regex: "----------",
+            matchCount: "-----"
+        })
+    }
+
+    dataObj.forEach(entry => {
+        let newRow = document.createElement("tr")
+        let newDataRegex = document.createElement("td")
+        let newDataMatches = document.createElement("td")
+
+        newDataRegex.innerText = entry.regex
+        newDataMatches.innerText = entry.matchCount
+
+        newRow.appendChild(newDataRegex)
+        newRow.appendChild(newDataMatches)
+
+        tableBody.appendChild(newRow)
+    });
+}
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -95,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    // when DOM content is loaded, ask PHP for RegEx attempt history
+    // when DOM content is loaded, request RegEx attempt history from PHP
     fetch('regex_history.php', {
         method: "GET",
         mode: "same-origin",
@@ -105,33 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
     .then(res => res.json())
-    .then(data => {
-        let tableBody = document.querySelector("tbody")
-
-        // TODO: extract into helper fn
-        // for each attempts entry, create a new table row, using entry.regex and entry.matchCount as the row's cells
-        // append the new row onto the recent attempts table
-        while (data.length && data.length < 7) {
-            data.push({
-                regex: "----------",
-                matchCount: "-----"
-            })
-        }
-
-        data.forEach(entry => {
-            let newRow = document.createElement("tr")
-            let newDataRegex = document.createElement("td")
-            let newDataMatches = document.createElement("td")
-
-            newDataRegex.innerText = entry.regex
-            newDataMatches.innerText = entry.matchCount
-
-            newRow.appendChild(newDataRegex)
-            newRow.appendChild(newDataMatches)
-
-            tableBody.appendChild(newRow)
-        });
-    })
+    .then(data => populateRecentAttemptsTable(data))
     .catch(error => {
     console.error('Request failed:', error);
     });
