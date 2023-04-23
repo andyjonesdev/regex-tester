@@ -9,16 +9,29 @@ function mass_preg_match($regex_str, ...$test_lines) {
     $match_obj["matches"] = [];
 
     foreach($test_lines as $line) {
-        if ($line === '' || preg_match($regex_str, $line) === 0) continue;
+        if ($line === '' || preg_match($regex_str, $line) === 0 || preg_match($regex_str, $line) === false) continue;
         if (preg_match($regex_str, $line) === 1) {
             array_push($match_obj["matches"], $line);
             $match_obj["match_count"] += 1;
         };
-        // TODO: add logic for if preg_match($line) --> false
     };
 
     return $match_obj;
 }
+
+
+// persist RegEx string and # of matches to SQLite
+// prepare statement and bind values to avoid SQL injection
+function db_insert_new_attempt($regex_str, $match_count) {
+    $db = new SQLite3("regextester.sqlite");
+    $stmt = $db->prepare('INSERT INTO attempts (regex, matchCount) VALUES (:value1, :value2)');
+
+    $stmt->bindValue(':value1', $regex_str);
+    $stmt->bindValue(':value2', $match_count);
+
+    $stmt->execute();
+    $db->close();
+};
 
 // parse JSON sent via AJAX POST
 $input_data = file_get_contents("php://input");
@@ -43,16 +56,7 @@ if($json_data){
     $regex_attempt  = $match_obj["regex_attempt"];
     $match_count = $match_obj["match_count"];
 
-    // TODO: extract some of this logic to helper fn
-    // persist RegEx string and # of matches to SQLite
-    $db = new SQLite3("regextester.sqlite");
-    $stmt = $db->prepare('INSERT INTO attempts (regex, matchCount) VALUES (:value1, :value2)');
-
-    $stmt->bindValue(':value1', $regex_attempt);
-    $stmt->bindValue(':value2', $match_count);
-
-    $stmt->execute();
-    $db->close();
+    db_insert_new_attempt($regex_attempt, $match_count);
 
     // send results of mass_preg_match back to JS to dynamically update "Matches" section
     $data = array(
@@ -71,4 +75,5 @@ if($json_data){
     header('Content-Type: application/json');
     echo json_encode($data);
 }
+
 ?>
