@@ -1,7 +1,3 @@
-<!--
-    TODO: remove echoes, print_r, var_dump
-    TODO: make html divs more semantic where possible -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,10 +12,10 @@
     <title>Regular Expression Tester</title>
 </head>
 <body>
-    <div id="rt-container">
-        <div id="rt-title">Regular Expression Tester</div>
-        <div id="rt-content">
-            <div id="rt-inputs">
+    <main id="rt-container">
+        <section id="rt-title">Regular Expression Tester</section>
+        <section id="rt-content">
+            <section id="rt-inputs">
                 <form id="inputs-form">
                     <label for="regex">Regular Expression</label><br>
                     <input type="text" class="text-input" name="regex" id="regex"><br>
@@ -38,14 +34,14 @@
 
                     <input type="button" value="Test Lines" id="submit">
                 </form>
-            </div>
-            <div id="rt-matches-attempts">
-                <div id="matches">
+            </section>
+            <section id="rt-matches-attempts">
+                <section id="matches">
                     <ul id="matches-ul">Matches
                         <!-- matched strings are dynamically appended here -->
                     </ul>
-                </div>
-                <div id="attempts">
+                </section>
+                <section id="attempts">
                     <table id="history-table">
                         <thead>
                             <tr id="headings">
@@ -57,9 +53,9 @@
                             <!-- table rows are dynamically appended here -->
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-    </div>
+                </section>
+            </section>
+        </section>
+    </main>
 </body>
 </html>
