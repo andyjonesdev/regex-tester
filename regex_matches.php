@@ -20,9 +20,11 @@ function mass_preg_match($regex_str, ...$test_lines) {
     return $match_obj;
 }
 
+// parse JSON sent via AJAX POST
 $input_data = file_get_contents("php://input");
 $json_data = json_decode($input_data, false);
 
+// capture data values for use in mass_preg_match
 if($json_data){
     $regex = $json_data->regex;
     $line1 = $json_data->line1;
@@ -42,6 +44,7 @@ if($json_data){
     $match_count = $match_obj["match_count"];
 
     // TODO: extract some of this logic to helper fn
+    // persist RegEx string and # of matches to SQLite
     $db = new SQLite3("regextester.sqlite");
     $stmt = $db->prepare('INSERT INTO attempts (regex, matchCount) VALUES (:value1, :value2)');
 
@@ -49,7 +52,9 @@ if($json_data){
     $stmt->bindValue(':value2', $match_count);
 
     $stmt->execute();
+    $db->close();
 
+    // send results of mass_preg_match back to JS to dynamically update "Matches" section
     $data = array(
         "status" => "success",
         "matches"=>$match_obj["matches"],

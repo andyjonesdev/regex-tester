@@ -60,6 +60,31 @@ function postReqAsJSON(phpUrl, valuesObj) {
             newLi.classList.add("error")
             matchesUl.appendChild(newLi)
         }
+
+        // TODO: extract to helper fn
+        let regex = data["regexAttempt"];
+        let matchCount = data["matchCount"];
+        let historyTable = document.getElementById("history-table")
+        // let headings = document.getElementById("headings")
+        let headings = document.querySelector("tbody")
+
+        let regexData = document.createElement("td");
+        let matchCountData = document.createElement("td");
+        regexData.innerText = regex
+        matchCountData.innerText = matchCount
+
+        let newRow = document.createElement("tr")
+        newRow.appendChild(regexData)
+        newRow.appendChild(matchCountData)
+
+        // insert latest regex attempt and matchCount to top of recent attempts table
+        historyTable.tBodies[0].insertBefore(newRow, historyTable.tBodies[0].firstChild);
+        // get rid of the least recent regex attempt by removing tr and both associated td from DOM
+        let lastRow = document.querySelector("tbody").lastElementChild
+        lastRow.children[0].remove()
+        lastRow.children[0].remove()
+        lastRow.remove();
+
     })
     .catch(error => {
         console.error('Error:', error);
@@ -96,10 +121,18 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(res => res.json())
     .then(data => {
         let historyTable = document.getElementById("history-table")
+        let tableBody = document.querySelector("tbody")
 
         // TODO: extract into helper fn
         // for each attempts entry, create a new table row, using entry.regex and entry.matchCount as the row's cells
         // append the new row onto the recent attempts table
+        while (data.length && data.length < 7) {
+            data.push({
+                regex: "----------",
+                matchcount: "-----"
+            })
+        }
+
         data.forEach(entry => {
             let newRow = document.createElement("tr")
             let newDataRegex = document.createElement("td")
@@ -111,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
             newRow.appendChild(newDataRegex)
             newRow.appendChild(newDataMatches)
 
-            historyTable.appendChild(newRow)
+            tableBody.appendChild(newRow)
         });
     })
     .catch(error => {

@@ -41,14 +41,21 @@
             </div>
             <div id="rt-matches-attempts">
                 <div id="matches">
-                    <ul id="matches-ul">Matches</ul>
+                    <ul id="matches-ul">Matches
+                        <!-- matched strings are dynamically appended here -->
+                    </ul>
                 </div>
                 <div id="attempts">
                     <table id="history-table">
-                        <tr>
-                            <th>Recent RegEx Attempts</th>
-                            <th>Match Count</th>
-                        </tr>
+                        <thead>
+                            <tr id="headings">
+                                <th>Recent RegEx Attempts</th>
+                                <th>Match Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- table rows are dynamically appended here -->
+                        </tbody>
                     </table>
                 </div>
             </div>
