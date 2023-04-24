@@ -91,12 +91,19 @@ label {
     font-size:1.3em;
     background-color: var(--field-color);
     height: 4%;
+    padding-left: 3%;
 }
 
-#submit {
-    background-color: var(--field-color);
+#buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
     padding: 1% 0 1% 0;
     font-size: 1.3em;
+    width: 49%;
+    background-color: var(--field-color);
 }
 
 #rt-matches-attempts {

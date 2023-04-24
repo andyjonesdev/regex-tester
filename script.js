@@ -136,20 +136,31 @@ function populateRecentAttemptsTable(dataObj) {
 }
 
 
+function clearInputFields() {
+    let regexField = document.getElementById("regex")
+    regexField.value = ''
+
+    for(let i = 1; i <= 10; i++) {
+        let testLineField = document.getElementById(`line-${i}`)
+        testLineField.value = ''
+    }
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
-    let button = document.getElementById("submit");
+    let submitButton = document.getElementById("submit");
+    let clearButton = document.getElementById("clear-inputs")
     let dataObj = {}
 
     // when DOM content is loaded, request RegEx attempt history from PHP
     fetchAttemptHistoryAndPopulateTable()
-
 
     // on click of "Test lines" button:
     // 1. capture values from RegEx input field & all test line input fields
     // 2. store values in an object
     // 3. send fetch POST request as JSON, supplying the object
     // 4. clear any li from "matches" ul before next test
-    button.addEventListener("click", () => {
+    submitButton.addEventListener("click", () => {
         addRegexToObj(dataObj);
         addTestLinesToObj(dataObj);
         fetchDataFromPHPAndUpdateDOM('regex_matches.php', dataObj);
@@ -157,4 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // reset the content of "Matches" ul after each test
         document.getElementById('lines-tested-ul').innerHTML='Lines Tested'
     });
+
+    // clear RegEx and Test Line fields upon clicking "Clear Fields" button
+    clearButton.addEventListener("click", clearInputFields)
 });

@@ -32,7 +32,12 @@
                     <input type="text" class="text-input" name="text-lines" id="line-9"><br>
                     <input type="text" class="text-input" name="text-lines" id="line-10"><br>
 
-                    <input type="button" value="Test Lines" id="submit">
+                    <!-- <input type="button" value="Test Lines" id="submit"> -->
+
+                    <div id="buttons">
+                        <input type="button" class="button" value="Test Lines" id="submit">
+                        <input type="button" class="button" value="Clear Fields" id="clear-inputs">
+                    </div>
                 </form>
             </section>
             <section id="rt-matches-attempts">
