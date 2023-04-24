@@ -129,7 +129,7 @@ ul {
     width: 95%;
 }
 
-li.error {
+li.failure {
     color: rgb(255, 0, 0);
 }
 

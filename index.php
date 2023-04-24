@@ -37,7 +37,7 @@
             </section>
             <section id="rt-matches-attempts">
                 <section id="matches">
-                    <ul id="matches-ul">Matches
+                    <ul id="lines-tested-ul">Lines Tested
                         <!-- matched strings are dynamically appended here -->
                     </ul>
                 </section>

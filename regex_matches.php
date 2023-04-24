@@ -7,13 +7,17 @@ function mass_preg_match($regex_str, ...$test_lines) {
     $match_obj["regex_attempt"] = $regex_str;
     $match_obj["match_count"] = 0;
     $match_obj["matches"] = [];
+    $match_obj["failures"] = [];
 
     foreach($test_lines as $line) {
-        if ($line === '' || preg_match($regex_str, $line) === 0 || preg_match($regex_str, $line) === false) continue;
-        if (preg_match($regex_str, $line) === 1) {
+        if ($line === '' || preg_match($regex_str, $line) === false) continue;
+        elseif (preg_match($regex_str, $line) === 1) {
             array_push($match_obj["matches"], $line);
             $match_obj["match_count"] += 1;
-        };
+        }
+        else {
+            array_push($match_obj["failures"], $line);
+        }
     };
 
     return $match_obj;
@@ -53,6 +57,7 @@ if($json_data){
 
     $match_obj = mass_preg_match($regex, $line1, $line2, $line3, $line4, $line5, $line6, $line7, $line8, $line9, $line10);
 
+    
     $regex_attempt  = $match_obj["regex_attempt"];
     $match_count = $match_obj["match_count"];
 
@@ -63,7 +68,8 @@ if($json_data){
         "status" => "success",
         "matches"=>$match_obj["matches"],
         "matchCount"=>$match_obj["match_count"],
-        "regexAttempt"=>$match_obj["regex_attempt"]
+        "regexAttempt"=>$match_obj["regex_attempt"],
+        "failures" => $match_obj["failures"]
     );
 
     header('Content-Type: application/json');

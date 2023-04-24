@@ -14,26 +14,32 @@ function addTestLinesToObj(obj) {
     }
 }
 
-// use the returned "matches" key to get the lines that match
-// create an li for each match and append to matches ul
-function addMatchesToMatchesUl(dataObj) {
+// use the returned "matches" and "failures" keys
+// create an li for each match and each failure and append to lines tested ul
+function addMatchesAndFailuresToLinesTestedList(dataObj) {
     let matches = dataObj["matches"]
+    let failures = dataObj["failures"]
 
-    let matchesUl = document.getElementById("matches-ul")
+    let linesTestedUl = document.getElementById("lines-tested-ul")
     if (matches.length) {
         matches.forEach(match => {
             let newLi = document.createElement("li")
             newLi.classList.add("success")
             newLi.innerText = match
-            matchesUl.appendChild(newLi)
+            linesTestedUl.appendChild(newLi)
         })
-    } else {
-        let newLi = document.createElement("li")
-        newLi.innerText = "No Matches"
-        newLi.classList.add("error")
-        matchesUl.appendChild(newLi)
+    }
+
+    if (failures.length) {
+        failures.forEach(failure => {
+            let newLi = document.createElement("li")
+            newLi.classList.add("failure")
+            newLi.innerText = failure
+            linesTestedUl.appendChild(newLi)
+        })
     }
 }
+
 
 function addAttemptToRecentAttemptsTable(dataObj) {
     let regex = dataObj["regexAttempt"];
@@ -57,6 +63,8 @@ function addAttemptToRecentAttemptsTable(dataObj) {
         lastRow.children[0].remove()
         lastRow.remove();
 }
+
+
 function sendPostReqAsJSON(phpUrl, dataObj) {
     return fetch(phpUrl, {
         method: "POST",
@@ -68,12 +76,14 @@ function sendPostReqAsJSON(phpUrl, dataObj) {
         body: JSON.stringify(dataObj)
     })
 }
+
+
 // given a php url and obj of KV pairs, send a fetch post request with the KV pairs as data
 function fetchDataFromPHPAndUpdateDOM(phpUrl, valuesObj) {
     sendPostReqAsJSON(phpUrl, valuesObj)
     .then(res => res.json())
     .then(data => {
-        addMatchesToMatchesUl(data)
+        addMatchesAndFailuresToLinesTestedList(data)
         addAttemptToRecentAttemptsTable(data)
     })
     .catch(error => {
@@ -145,6 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
         fetchDataFromPHPAndUpdateDOM('regex_matches.php', dataObj);
 
         // reset the content of "Matches" ul after each test
-        document.getElementById('matches-ul').innerHTML='Matches'
+        document.getElementById('lines-tested-ul').innerHTML='Lines Tested'
     });
 });
