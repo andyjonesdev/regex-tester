@@ -16,17 +16,17 @@ function addTestLinesToObj(obj) {
 
 // use the returned "matches" and "failures" keys
 // create an li for each match and each failure and append to lines tested ul
-function addMatchesAndFailuresToLinesTestedList(dataObj) {
+function addMatchesAndFailuresToLastTestList(dataObj) {
     let matches = dataObj["matches"]
     let failures = dataObj["failures"]
 
-    let linesTestedUl = document.getElementById("lines-tested-ul")
+    let lastTestUl = document.getElementById("last-test-ul")
     if (matches.length) {
         matches.forEach(match => {
             let newLi = document.createElement("li")
             newLi.classList.add("success")
             newLi.innerText = match
-            linesTestedUl.appendChild(newLi)
+            lastTestUl.appendChild(newLi)
         })
     }
 
@@ -35,7 +35,7 @@ function addMatchesAndFailuresToLinesTestedList(dataObj) {
             let newLi = document.createElement("li")
             newLi.classList.add("failure")
             newLi.innerText = failure
-            linesTestedUl.appendChild(newLi)
+            lastTestUl.appendChild(newLi)
         })
     }
 }
@@ -83,7 +83,7 @@ function fetchDataFromPHPAndUpdateDOM(phpUrl, valuesObj) {
     sendPostReqAsJSON(phpUrl, valuesObj)
     .then(res => res.json())
     .then(data => {
-        addMatchesAndFailuresToLinesTestedList(data)
+        addMatchesAndFailuresToLastTestList(data)
         addAttemptToRecentAttemptsTable(data)
     })
     .catch(error => {
@@ -165,8 +165,8 @@ document.addEventListener("DOMContentLoaded", () => {
         addTestLinesToObj(dataObj);
         fetchDataFromPHPAndUpdateDOM('regex_matches.php', dataObj);
 
-        // reset the content of "Matches" ul after each test
-        document.getElementById('lines-tested-ul').innerHTML='Lines Tested'
+        // reset the content of "Last Test" ul after each test
+        document.getElementById("last-test-ul").innerHTML="Last Test Results"
     });
 
     // clear RegEx and Test Line fields upon clicking "Clear Fields" button
