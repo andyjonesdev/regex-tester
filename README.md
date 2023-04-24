@@ -6,14 +6,13 @@ RegEx Tester is an application allowing users to test a regular expression again
 ## Main View
 !["main page view"](https://i.imgur.com/a91bTMB.png)
 
-## Technologies and Dependencies Used
-- PHP8
-- Apache2
-- SQLite3
+## Technologies Used
+- PHP 8
+- Apache 2
+- SQLite 3
 - Javascript
-- Ubuntu 22.04.2 for WSL 
-- php-sqlite3
-- libapache2-mod-php
+- HTML
+- CSS
 
 ## Features
 - Users can enter a regular expression as well as up to 10 test lines to run regular expression matching against. 
