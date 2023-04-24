@@ -93,7 +93,7 @@ function fetchDataFromPHPAndUpdateDOM(phpUrl, valuesObj) {
 
 
 function fetchAttemptHistoryAndPopulateTable() {
-    fetch('regex_history.php', {
+    fetch('../src/regex_history.php', {
         method: "GET",
         mode: "same-origin",
         credentials: "same-origin",
@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
     submitButton.addEventListener("click", () => {
         addRegexToObj(dataObj);
         addTestLinesToObj(dataObj);
-        fetchDataFromPHPAndUpdateDOM('regex_matches.php', dataObj);
+        fetchDataFromPHPAndUpdateDOM('../src/regex_matches.php', dataObj);
 
         // reset the content of "Last Test" ul after each test
         document.getElementById("last-test-ul").innerHTML="Last Test Results"
