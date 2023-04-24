@@ -1,7 +1,7 @@
 # RegEx Tester
 
 ## Project Description
-RegEx Tester is an application allowing users to test a regular expression against up to 10 test lines at a time. Results for the last test run are displayed for users to see, with matching lines colored green and failed lines colored red. Also, a history table displays the 7 most recent regular expressions and how many matches they yielded. Each time a user runs a regular expression test, the regex string and match count are persisted to a SQLite3 instance. 
+RegEx Tester is an application allowing users to test a regular expression against up to 10 test lines at a time. Results for the last test run are displayed for users to see, with matching lines colored green and failed lines colored red. Also, a history table displays the 7 most recent regular expressions and how many matches they yielded. Each time a user runs a regular expression test, the regex string and match count are persisted to a SQLite3 database instance. 
 
 ## Main View
 !["main page view"](https://i.imgur.com/a91bTMB.png)
