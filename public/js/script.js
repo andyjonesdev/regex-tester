@@ -7,7 +7,8 @@ import {
 
 // capture regex string and add it to an obj
 function addRegexToObj(obj) {
-    let regex = document.getElementById('regex').value
+    let regex = document.getElementById("regex").value
+    if (regex === "") regex = "----------"
     obj["regex"] = String(regex)
 }
 

@@ -1,7 +1,7 @@
 <?php
 // take in up to 10 test lines passed via AJAX
 // return an obj with {regex_attempt: "string", match_count: n, matches: []}
-function mass_preg_match($regex_str, ...$test_lines) {
+function mass_preg_match(string $regex_str, string ...$test_lines): array {
     $match_obj = [];
 
     $match_obj["regex_attempt"] = $regex_str;
@@ -10,7 +10,7 @@ function mass_preg_match($regex_str, ...$test_lines) {
     $match_obj["failures"] = [];
 
     foreach($test_lines as $line) {
-        if ($line === '' || preg_match($regex_str, $line) === false) continue;
+        if ($line === '') continue;
         elseif (preg_match($regex_str, $line) === 1) {
             array_push($match_obj["matches"], $line);
             $match_obj["match_count"] += 1;
@@ -26,7 +26,7 @@ function mass_preg_match($regex_str, ...$test_lines) {
 
 // persist RegEx string and # of matches to SQLite
 // prepare statement and bind values to avoid SQL injection
-function db_insert_new_attempt($regex_str, $match_count) {
+function db_insert_new_attempt(string $regex_str, int $match_count): void {
     $db = new SQLite3("regextester.sqlite");
     $stmt = $db->prepare('INSERT INTO attempts (regex, matchCount) VALUES (:value1, :value2)');
 
