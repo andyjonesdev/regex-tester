@@ -112,8 +112,8 @@ label {
 }
 
 
-/* Successful matches styles */
-#matches {
+/* Last Test Results styles */
+#last-test {
     display: flex;
     justify-content: center;
     height:50%;

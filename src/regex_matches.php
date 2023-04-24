@@ -57,7 +57,6 @@ if($json_data){
 
     $match_obj = mass_preg_match($regex, $line1, $line2, $line3, $line4, $line5, $line6, $line7, $line8, $line9, $line10);
 
-
     $regex_attempt  = $match_obj["regex_attempt"];
     $match_count = $match_obj["match_count"];
 
@@ -68,8 +67,8 @@ if($json_data){
         "status" => "success",
         "matches"=>$match_obj["matches"],
         "failures" => $match_obj["failures"],
-        "matchCount"=>$match_obj["match_count"],
-        "regexAttempt"=>$match_obj["regex_attempt"]
+        "matchCount"=>$match_count,
+        "regexAttempt"=>$regex_attempt
     );
 
     header('Content-Type: application/json');

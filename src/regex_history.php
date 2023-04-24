@@ -4,6 +4,7 @@ try{
 } catch(Exception $exception){
     echo "failure: " . $exception;
 }
+
 $db->busyTimeout(5000);
 $db->exec('PRAGMA journal_mode = wal;');
 $db->exec(
